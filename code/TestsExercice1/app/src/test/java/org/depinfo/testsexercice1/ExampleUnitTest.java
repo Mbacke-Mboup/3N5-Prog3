@@ -15,5 +15,10 @@ public class ExampleUnitTest {
         assertEquals(4, 2 + 2);
     }
 
+    @Test
+    public void OKBD() {
+        assertEquals(4, 2 + 2);
+    }
+
     // Pas ceux-là, les autres !
 }

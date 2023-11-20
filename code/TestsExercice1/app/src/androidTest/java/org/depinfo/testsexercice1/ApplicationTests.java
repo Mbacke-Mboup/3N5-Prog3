@@ -9,6 +9,7 @@ import androidx.test.ext.junit.runners.AndroidJUnit4;
 import org.depinfo.testsexercice1.bd.BD;
 import org.depinfo.testsexercice1.modele.Personne;
 import org.depinfo.testsexercice1.service.ServiceImplementation;
+import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -32,22 +33,28 @@ public class ApplicationTests {
     @Test
     public void ajoutPersonneOKBD() {
         Personne personne = new Personne();
-        personne.idPersonne = 1L;
         personne.nomPersonne = "Maudie";
         personne.agePersonne = 24;
         personne.adressePersonne = "1234 De la Mortagne MTL CA";
         bd.monDao().insertPersonne(personne);
+        Assert.assertNull(personne.idPersonne);
     }
 
 
     @Test
-    public void ajoutPersonneKOService() {
+    public void ajoutPersonneKOService() throws Exception {
         Personne personne = new Personne();
-        personne.idPersonne = 2L;
         personne.nomPersonne = "Maudie";
         personne.agePersonne = 24;
         personne.adressePersonne = "1234 De la Mortagne MTL CA";
         service.ajouterPersonne(personne);
+        Assert.assertNotNull(personne.idPersonne);
+    }
+
+    @Test
+    public void validePostal() {
+        Assert.assertTrue(service.isValidZipCode("H1Y 1E1"));
+
     }
 
 
